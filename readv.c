@@ -7,7 +7,7 @@
 
 int main(int argc, char *argv[])
 {
-	int fd;
+	 int fd;
 	struct iovec iov[3];
 	char myStruct[15];
 	/* First buffer */
