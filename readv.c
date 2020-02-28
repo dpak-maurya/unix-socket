@@ -21,8 +21,8 @@ int main(int argc, char *argv[])
 	
 	totRequired = 0;
 
-	iov[0].iov_base = &myStruct;
-	iov[0].iov_len = sizeof(struct stat);
+	iov[0].iov_base = myStruct;
+	iov[0].iov_len = sizeof(myStruct);
 	totRequired += iov[0].iov_len;
 	iov[1].iov_base = &x;
 	iov[1].iov_len = sizeof(x);
@@ -39,6 +39,6 @@ int main(int argc, char *argv[])
 	printf("total bytes requested: %ld; bytes read: %ld\n",
 	(long) totRequired, (long) numRead);
 	for(int i=0;i<3;i++)
-		printf("%s lolo\n",iov[i].iov_base );
+		printf("%s \n",iov[i].iov_base );
 	exit(EXIT_SUCCESS);
 }
