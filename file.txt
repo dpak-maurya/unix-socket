@@ -1,2 +1,3 @@
-hii this is cn lab. afdsljk adfslkjafsd 
-fdaslkjfa kfdasj afdskj
+short string
+This is a longer string
+This is the longest string in this example
