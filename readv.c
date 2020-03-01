@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 	struct iovec iov[3];
 	char myStruct[15];
 	/* First buffer */
-	int x;
+	char x;
 	/* Second buffer */
 	#define STR_SIZE 100
 	char str[STR_SIZE];
@@ -39,6 +39,6 @@ int main(int argc, char *argv[])
 	printf("total bytes requested: %ld; bytes read: %ld\n",
 	(long) totRequired, (long) numRead);
 	for(int i=0;i<3;i++)
-		printf("%s \n",iov[i].iov_base );
+		printf("%s end  \n\n",iov[i].iov_base );
 	exit(EXIT_SUCCESS);
 }

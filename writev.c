@@ -4,19 +4,21 @@
 #include <stdlib.h>
 #include<sys/types.h>
 #include<fcntl.h>
+#include<string.h>
+
 
 int main(int argc, char *argv[])
 {
 	int fd;
 	struct iovec iov[3];
-	char myStruct[]="this is cn lab .writing code for writev\n";	/* First buffer */
-	int x=10;
+	char myStruct[]="this is cn lab .writing code for writev.";	/* First buffer */
+	char x='1';
 	/* Second buffer */
 	#define STR_SIZE 100
-	char str[STR_SIZE]="today thsi dfslkj fdaskljf afds  fadsklj adfs\n";
+	char str[]="today thsi dfslkj fdaskljf afds  fadsklj adfs\n";
 	/* Third buffer */
-	ssize_t numRead, totRequired;
-	fd = open(argv[1], O_RDONLY);
+	ssize_t numWrite, totRequired;
+	fd = open(argv[1], O_WRONLY|O_CREAT);
 	
 	totRequired = 0;
 
@@ -27,17 +29,17 @@ int main(int argc, char *argv[])
 	iov[1].iov_len = sizeof(x);
 	totRequired += iov[1].iov_len;
 	iov[2].iov_base = str;
-	iov[2].iov_len = STR_SIZE;
+	iov[2].iov_len = strlen(str);
 	totRequired += iov[2].iov_len;
 
 
-	numRead = writev(fd, iov, 3);
+	numWrite = writev(fd, iov, 3);
 	
-	if (numRead < totRequired)
+	if (numWrite < totRequired)
 	printf("write fewer bytes than requested\n");
-	printf("total bytes requested: %ld; bytes read: %ld\n",
-	(long) totRequired, (long) numRead);
+	printf("total bytes requested: %ld; bytes write: %ld\n",
+	(long) totRequired, (long) numWrite);
 	for(int i=0;i<3;i++)
-		printf("%s \n",iov[i].iov_base );
+		printf("%s\n",(char*)iov[i].iov_base );
 	exit(EXIT_SUCCESS);
 }
