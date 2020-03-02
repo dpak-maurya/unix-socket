@@ -10,11 +10,13 @@ int main(){
 	struct sockaddr_un addr;
 	int usfd,nusfd;
     usfd=socket(AF_UNIX,SOCK_STREAM,0);
+
 	if (usfd==-1)
 	{
 		printf("socket creation failed\n");
 		exit(0);
 	}
+	
 	if(remove(SOCKNAME)==-1)
 		exit(0);
 	memset(&addr,0,sizeof(struct sockaddr_un));
